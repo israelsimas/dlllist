@@ -183,7 +183,7 @@ void del_DLLIST_ITEM(DLLIST *pDllist, DLLIST_ITEM *pDllitem);
 DLLIST *new_DLLIST_WithItems_fl(size_t n, size_t sz, char *pFile, int nLine);
 
 /*
- * Insere um item na lista encadeada.
+ * Inserts an item in the threaded list.
  *
  * @param pDllist Linked list pointer
  * @param pDllitem pointer of the item to be inserted.
