@@ -25,12 +25,12 @@
 #endif
 
 /*
- * Verifica se os ponteiros dos itens são compatíveis.
+ * Checks if the item's pointers are compatible.
  *
- * @param pItemA ponteiro do primeiro item a ser comparado.
- * @param pItemB ponteiro do Segundo item a ser comparado.
+ * @param pItemA the first item to be compared.
+ * @param pItemB Second item pointer to be compared.
  *
- * @return Valor que determina se os itens são compatíveis.
+ * @return Value that determines whether items are compatible.
  */
 long this_item(void *a, void *b);
 
@@ -67,7 +67,7 @@ typedef struct DLLIST {
 #define LENGHT_STR_DLLIST   256
 
 /*
- * Funções básicas para a lista encadeada do sistema
+ * Basic functions for the system chained list
  */
 #define new_DLLIST() new_DLLIST_fl(__FILE__, __LINE__)
 DLLIST *new_DLLIST_fl(char *pFile, int nLine);
@@ -115,68 +115,68 @@ void *DLLIST_find(DLLIST *pDllist, void *pKey, long(*sortfcn)(void *, void *));
 void *DLLIST_head(DLLIST *pDllist);
 
 /*
- * Recupera o último item da lista encadeada
+ * Retrieves the last item in the linked list
  *
- * @param ponteiro da lista encadeada
+ * @param linked list pointer
  *
- * @return ponteiro do último item.
+ * @return the last item's pointer.
  */
 void *DLLIST_tail(DLLIST *pDllist);
 
 /*
- * Executa o avanço da lista encadeada para o item sucessor.
+ * Performs the progress of the threaded list for the successor item.
  *
- * @param pDllist Ponteiro da lista encadeada
+ * @param pDllist linked list pointer
  */
 void DLLIST_next(DLLIST *pDllist);
 
 /*
- * Executa o avanço da lista encadeada para o item antecessor.
+ * Performs the forwarding of the linked list to the predecessor item.
  *
- * @param pDllist Ponteiro da lista encadeada
+ * @param pDllist linked list pointer
  */
 void DLLIST_prev(DLLIST *pDllist);
 unsigned long DLLIST_count(DLLIST *pDllist);
 #define DLLIST_count_inline(x) (((x)==NULL)?0:((x)->count))
 
 /*
- * Recupera o item corrente de uma lista encadeada
+ * Retrieves the current item from a linked list
  *
- * @param pDllist Ponteiro da lista encadeada a ser duplicada
+ * @param pDllist Linked list pointer to be duplicated
  *
- * @return ponteiro do item da lista encadeada que foi recuperado.
+ * @return pointer of the threaded list item that was retrieved.
  */
 void *DLLIST_read(DLLIST *pDllist);
 long DLLIST_cur_is_null(DLLIST *pDllist);
 
 /*
- * Remove o item corrente de uma lista encadeada
+ * Removes the current item from a linked list
  *
- * @param pDllist Ponteiro da lista encadeada a ser duplicada
+ * @param pDllist Linked list pointer to be duplicated
  *
- * @return ponteiro do item da lista encadeada que foi removido.
+ * @return pointer of the chained list item that was removed.
  */
 void *DLLIST_remove(DLLIST *pDllist);
 
 /*
- * Copia uma lista encadeada para outra.
+ * Copy one linked list to another.
  *
- * @param pDllDst Ponteiro da lista encadeada destino
- * @param pDllSrc ponteiro da lista encadeade a ser copiada
+ * @param pDllDst Destination chained list pointer
+ * @param pDllSrc list pointer to be copied
  */
 void DLLIST_copy(DLLIST *pDllDst, DLLIST *pDllSrc);
 
 /*
- * Funões de tratamento para os itens da lista encadeada
+ * Handling functions for linked list items
  */
 #define new_DLLIST_ITEM(pdll) new_DLLIST_ITEM_fl((pdll), __FILE__, __LINE__)
 DLLIST_ITEM *new_DLLIST_ITEM_fl(DLLIST *pDllist, char *pFile, int nLine);
 
 /*
- * Remove um item na lista encadeada.
+ * Removes an item from the threaded list.
  *
- * @param pDllist Ponteiro da lista encadeada
- * @param pDllitem ponteiro do item a ser removido.
+ * @param pDllist Linked list pointer
+ * @param pDllitem pointer of the item to be removed.
  */
 void del_DLLIST_ITEM(DLLIST *pDllist, DLLIST_ITEM *pDllitem);
 #define new_DLLIST_WithItems(n, sz)	new_DLLIST_WithItems_fl((n), (sz), __FILE__, __LINE__)
@@ -185,8 +185,8 @@ DLLIST *new_DLLIST_WithItems_fl(size_t n, size_t sz, char *pFile, int nLine);
 /*
  * Insere um item na lista encadeada.
  *
- * @param pDllist Ponteiro da lista encadeada
- * @param pDllitem ponteiro do item a ser inserido.
+ * @param pDllist Linked list pointer
+ * @param pDllitem pointer of the item to be inserted.
  *
  * @return pDllitem ponteiro do item inserido.
  */
@@ -196,21 +196,21 @@ DLLIST_ITEM *DLLIST_insert_after_ITEM(DLLIST *pDllist, DLLIST_ITEM *pDllitem);
 DLLIST_ITEM *DLLIST_insert_before_ITEM(DLLIST *pDllist, DLLIST_ITEM *pDllitem);
 
 /*
- * Recupera o item corrente de uma lista encadeada
+ * Retrieves the current item from a linked list
  *
- * @param pDllist Ponteiro da lista encadeada a ser duplicada
+ * @param pDllist Linked list pointer to be duplicated
  *
- * @return ponteiro do item da lista encadeada que foi recuperado.
+ * @return pointer of the threaded list item that was retrieved.
  */
 DLLIST_ITEM *DLLIST_read_ITEM(DLLIST *pDllist);
 
 /*
- * Remove uma item numa lista encadeada
+ * Removes an item from a linked list
  *
- * @param pDllist Ponteiro da lista encadeada a ser duplicada
- * @param pDllitem ponteiro do item a ser removido.
+ * @param pDllist Linked list pointer to be duplicated
+ * @param pDllitem pointer of the item to be removed.
  *
- * @return ponteiro do item da lista encadeada que foi removido.
+ * @return pointer of the chained list item that was removed.
  */
 DLLIST_ITEM *DLLIST_remove_ITEM(DLLIST *pDllist, DLLIST_ITEM *pDllitem);
 
