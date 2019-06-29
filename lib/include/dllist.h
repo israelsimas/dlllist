@@ -66,6 +66,10 @@ typedef struct DLLIST {
 #define DLLIST_INITIALIZER {0, NULL, NULL, NULL, NULL}
 #define LENGHT_STR_DLLIST   256
 
+/**************************************************************************
+ * API FUNCTIONS
+ **************************************************************************/
+
 /*
  * Basic functions for the system chained list
  */
