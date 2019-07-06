@@ -14,3 +14,6 @@ file(GLOB headers "lib/include/*.h" )
 file(GLOB sources "lib/src/*.c" )
 
 add_library(dllist SHARED ${sources} ${headers})
+
+install(TARGETS dllist DESTINATION /usr/local/lib)
+install(FILES "lib/include/dllist.h" DESTINATION /usr/local/include)
