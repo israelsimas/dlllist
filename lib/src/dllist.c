@@ -17,7 +17,7 @@ void *DLLIST_add_sorted_fl(DLLIST *pDllist, void *item, long(*sortfcn)(void *, v
 
 	if (sortfcn == NULL) {
 		sortfcn = this_item;
-    }
+  }
 
 	headitem = pDllist->head;
 
@@ -25,8 +25,9 @@ void *DLLIST_add_sorted_fl(DLLIST *pDllist, void *item, long(*sortfcn)(void *, v
 		return DLLIST_append_fl(pDllist, item, pFile, nLine);
 	}
 
-	while ((sortfcn(headitem->item, item) <= 0) && (headitem->next))
+	while ((sortfcn(headitem->item, item) <= 0) && (headitem->next)) {
 		headitem = headitem->next;
+  }
 
 	if ((headitem->next == NULL) && (sortfcn(headitem->item, item) <= 0)) {
 		return DLLIST_append_fl(pDllist, item, pFile, nLine);
@@ -51,7 +52,7 @@ void *DLLIST_add_sorted_fl(DLLIST *pDllist, void *item, long(*sortfcn)(void *, v
 	tmpitem->prev->next = tmpitem;
 
 	return (tmpitem->item);
-	}
+}
 
 void *DLLIST_append_fl(DLLIST *pDllist, void *item, char *pFile, int nLine) {
 	DLLIST_ITEM *tmpitem;
@@ -89,8 +90,10 @@ void DLLIST_copy(DLLIST *pDllDst, DLLIST *pDllSrc) {
 }
 
 unsigned long DLLIST_count(DLLIST *pDllist) {
-	if (pDllist == NULL)
+
+	if (pDllist == NULL) {
 		return (0);
+  }
 
 	return (pDllist->count);
 }
@@ -105,6 +108,7 @@ void del_DLLIST_fl(DLLIST *pDllist, void(*free_item)(void *), char *pFile, int n
 }
 
 void clear_DLLIST_fl(DLLIST *pDLList, void(*free_item)(void *), char *pFile, int nLine) {
+
 	DLLIST_ITEM *tmp1, *tmp2;
 
 	tmp1 = pDLList->head;
@@ -130,6 +134,7 @@ void del_DLLIST_ITEM(DLLIST *pDllist, DLLIST_ITEM *pDllitem) {
 }
 
 void *DLLIST_find(DLLIST *pDllist, void *pKey, long(*sortfcn)(void *, void *)) {
+
 	DLLIST_ITEM *pTmp1;
 
 	if (sortfcn == NULL)
@@ -157,6 +162,7 @@ void *DLLIST_head(DLLIST *pDllist) {
 }
 
 DLLIST_ITEM *DLLIST_insert_after_ITEM(DLLIST *pDllist, DLLIST_ITEM *pDllitem) {
+
 	DLLIST_ITEM *tmp2;
 
 	if (pDllist->cur == NULL) {
@@ -180,6 +186,7 @@ DLLIST_ITEM *DLLIST_insert_after_ITEM(DLLIST *pDllist, DLLIST_ITEM *pDllitem) {
 }
 
 DLLIST_ITEM *DLLIST_insert_before_ITEM(DLLIST *pDllist, DLLIST_ITEM *pDllitem) {
+
 	DLLIST_ITEM *tmp2;
 
 	if (pDllist->cur == NULL) {
@@ -203,6 +210,7 @@ DLLIST_ITEM *DLLIST_insert_before_ITEM(DLLIST *pDllist, DLLIST_ITEM *pDllitem) {
 }
 
 void *DLLIST_insert_after_fl(DLLIST *pDllist, void *item, char *pFile, int nLine) {
+
 	DLLIST_ITEM *pTmpItem;
 
 	pTmpItem = new_DLLIST_ITEM_fl(pDllist, pFile, nLine);
@@ -215,6 +223,7 @@ void *DLLIST_insert_after_fl(DLLIST *pDllist, void *item, char *pFile, int nLine
 }
 
 void *DLLIST_insert_before_fl(DLLIST *pDllist, void *item, char *pFile, int nLine) {
+  
 	DLLIST_ITEM *pTmpItem;
 
 	pTmpItem = new_DLLIST_ITEM_fl(pDllist, pFile, nLine);
@@ -229,6 +238,7 @@ void *DLLIST_insert_before_fl(DLLIST *pDllist, void *item, char *pFile, int nLin
 }
 
 DLLIST *new_DLLIST_fl(char *pFile, int nLine) {
+
 	DLLIST *pTmp;
 
 	pTmp = (DLLIST *) malloc_fl(sizeof(DLLIST), pFile, nLine);
@@ -241,14 +251,15 @@ DLLIST *new_DLLIST_fl(char *pFile, int nLine) {
 }
 
 void init_DLLIST(DLLIST *pDLList) {
-	pDLList->count = 0;
-	pDLList->cur = NULL;
-	pDLList->head = NULL;
-	pDLList->tail = NULL;
-	pDLList->free = NULL;
+	pDLList->count  = 0;
+	pDLList->cur    = NULL;
+	pDLList->head   = NULL;
+	pDLList->tail   = NULL;
+	pDLList->free   = NULL;
 }
 
 DLLIST_ITEM *new_DLLIST_ITEM_fl(DLLIST *pDllist, char *pFile, int nLine) {
+
 	DLLIST_ITEM *pTmp1;
 
 	if (pDllist->free) {
@@ -262,6 +273,7 @@ DLLIST_ITEM *new_DLLIST_ITEM_fl(DLLIST *pDllist, char *pFile, int nLine) {
 }
 
 void reserve_free_items_DLLIST_fl(DLLIST *pDllist, int n, char *pFile, int nLine) {
+
 	DLLIST_ITEM **ppItem;
 
 	/* Conta n itens para liberar na lista */
@@ -280,6 +292,7 @@ void reserve_free_items_DLLIST_fl(DLLIST *pDllist, int n, char *pFile, int nLine
 }
 
 DLLIST *new_DLLIST_WithItems_fl(size_t n, size_t sz, char *pFile, int nLine) {
+
 	DLLIST *pTmp;
 	int i;
 
@@ -304,11 +317,13 @@ DLLIST *new_DLLIST_WithItems_fl(size_t n, size_t sz, char *pFile, int nLine) {
 }
 
 void DLLIST_next(DLLIST *pDllist) {
-	if (pDllist->cur != NULL)
+	if (pDllist->cur != NULL) {
 		pDllist->cur = pDllist->cur->next;
+  }
 }
 
 void *DLLIST_prepend_fl(DLLIST *pDllist, void *item, char *pFile, int nLine) {
+
 	DLLIST_ITEM *tmpitem;
 
 	tmpitem = new_DLLIST_ITEM_fl(pDllist, pFile, nLine);
@@ -339,8 +354,9 @@ DLLIST_ITEM *DLLIST_prepend_ITEM(DLLIST *pDllist, DLLIST_ITEM *pDllitem) {
 }
 
 void DLLIST_prev(DLLIST *pDllist) {
-	if (pDllist->cur != NULL)
+	if (pDllist->cur != NULL) {
 		pDllist->cur = pDllist->cur->prev;
+  }
 }
 
 void *DLLIST_read(DLLIST *pDllist) {
@@ -357,6 +373,7 @@ DLLIST_ITEM *DLLIST_read_ITEM(DLLIST *pDllist) {
 }
 
 void *DLLIST_remove(DLLIST *pDllist) {
+
 	DLLIST_ITEM *pTmp;
 
 	pTmp = DLLIST_remove_ITEM(pDllist, pDllist->cur);
@@ -445,14 +462,6 @@ long this_item(void *pItemA, void *pItemB) {
 	return (((unsigned long) pItemA) - ((unsigned long) pItemB));
 }
 
-/*
- * Duplica uma lista encadeada
- *
- * @param pDllist Ponteiro da lista encadeada a ser duplicada
- * @param bReverse Indica se a lista deve ser duplicada na ordem inversa.
- *
- * @return ponteiro da lista encadeada duplicada.
- */
 DLLIST *dup_DLLIST(DLLIST *pDllist, void* (*dup_item)(void *), int bReverse) {
 
 	DLLIST *pdllNew = new_DLLIST();
