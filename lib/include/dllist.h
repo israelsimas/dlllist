@@ -11,6 +11,10 @@
 #ifndef __DLLIST_H__
 #define __DLLIST_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stddef.h>
 
 /**************************************************************************
@@ -217,5 +221,9 @@ DLLIST_ITEM *DLLIST_read_ITEM(DLLIST *pDllist);
  * @return pointer of the chained list item that was removed.
  */
 DLLIST_ITEM *DLLIST_remove_ITEM(DLLIST *pDllist, DLLIST_ITEM *pDllitem);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
